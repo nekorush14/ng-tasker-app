@@ -1,0 +1,15 @@
+@use "@angular/material" as mat;
+
+.task-table-container {
+  margin: 1rem;
+}
+
+table {
+  width: 100%;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
