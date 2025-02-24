@@ -2,13 +2,7 @@
 <mat-dialog-content>
   <mat-form-field>
     <mat-label>Task name</mat-label>
-    <input
-      matInput
-      placeholder="Name"
-      [(ngModel)]="name"
-      required
-      cdkFocusInitial
-    />
+    <input matInput placeholder="Name" [(ngModel)]="name" required />
   </mat-form-field>
   <mat-checkbox [(ngModel)]="completed">Completed</mat-checkbox>
 </mat-dialog-content>

@@ -9,7 +9,7 @@ import {
 } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
-import { Task } from '../../models/task';
+import { Task } from '../shared/task';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,12 +41,4 @@ export class TaskDetailComponent {
   onCancelClick(): void {
     this.dialogRef.close();
   }
-
-  // onSaveClick(): void {
-  //   this.dialogRef.close({
-  //     id: this.task?.id ?? undefined,
-  //     name: this.name,
-  //     completed: this.completed,
-  //   });
-  // }
 }

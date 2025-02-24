@@ -3,10 +3,13 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Task } from '../../models/task';
+import { Task } from './shared/task';
 import { MatButtonModule } from '@angular/material/button';
-import { TaskDetailComponent } from '../task-detail/task-detail.component';
-import { MatDialog } from '@angular/material/dialog';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
+import {
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatDialog,
+} from '@angular/material/dialog';
 
 const TASKS: Task[] = [
   { id: 1, name: 'Task 1', completed: false },
@@ -15,6 +18,12 @@ const TASKS: Task[] = [
 @Component({
   selector: 'app-tasks',
   imports: [MatTableModule, RouterModule, MatIconModule, MatButtonModule],
+  providers: [
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: { autoFocus: 'dialog', restoreFocus: true },
+    },
+  ],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss',
 })
