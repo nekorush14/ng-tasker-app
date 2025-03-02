@@ -3,3 +3,35 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+.mat-dialog-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+mat-form-field,
+mat-checkbox {
+  display: block;
+}
+
+mat-checkbox:last-child {
+  margin-bottom: 0;
+}
+
+.mat-dialog-container > * {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.mat-dialog-container > *:last-child {
+  margin-bottom: 0;
+}

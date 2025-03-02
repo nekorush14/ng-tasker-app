@@ -2,11 +2,22 @@
 <mat-dialog-content>
   <mat-form-field>
     <mat-label>Task name</mat-label>
-    <input matInput placeholder="Name" [(ngModel)]="name" required />
+    <input
+      matInput
+      [formControl]="taskFormControl"
+      placeholder="Name"
+      required
+    />
+    @if (taskFormControl.hasError("required")) {
+      <mat-error>Task name is <strong>required</strong></mat-error>
+    }
   </mat-form-field>
   <mat-checkbox [(ngModel)]="completed">Completed</mat-checkbox>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="task()">Save</button>
+  @if (task()?.id != undefined) {
+    <button mat-button (click)="onDeleteClick()">Delete</button>
+  }
+  <button mat-button (click)="onSaveClick()">Save</button>
 </mat-dialog-actions>

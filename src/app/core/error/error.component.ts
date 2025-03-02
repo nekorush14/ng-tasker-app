@@ -4,24 +4,28 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-error',
-  imports: [MatButtonModule, RouterModule],
+  imports: [MatButtonModule, RouterModule, RouterModule],
   templateUrl: './error.component.html',
   styleUrl: './error.component.scss',
 })
 export class ErrorComponent implements OnInit {
-  statusCode = signal(404);
-  message = signal('Page not found');
+  readonly statusCode = signal<number>(404);
+  readonly message = signal<string>('Page not found');
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
-      if (data['statusCode']) {
-        this.statusCode.set(data['statusCode']);
-      }
-      if (data['message']) {
-        this.message.set(data['message']);
-      }
-    });
+    const state = history.state;
+
+    if (state && (state.statusCode || state.message)) {
+      if (state.statusCode) this.statusCode.set(state.statusCode);
+      if (state.message) this.message.set(state.message);
+    } else {
+      // Otherwise, use the data from the route
+      const data = this.route.snapshot.data;
+      console.log('[DEBUG] route data:', data);
+      if (data['statusCode']) this.statusCode.set(data['statusCode']);
+      if (data['message']) this.message.set(data['message']);
+    }
   }
 }
