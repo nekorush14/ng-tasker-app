@@ -1,26 +1,26 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject, model } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogContent,
   MatDialogRef,
   MatDialogTitle,
-} from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input';
-import { Task } from '../shared/task';
+} from "@angular/material/dialog";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatInputModule } from "@angular/material/input";
+import { Task } from "../shared/task";
 import {
   FormBuilder,
   FormControl,
   FormsModule,
   Validators,
   ReactiveFormsModule,
-} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
+} from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
-  selector: 'app-task-detail',
+  selector: "app-task-detail",
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -32,15 +32,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogActions,
     MatCheckboxModule,
   ],
-  templateUrl: './task-detail.component.html',
-  styleUrl: './task-detail.component.scss',
+  templateUrl: "./task-detail.component.html",
+  styleUrl: "./task-detail.component.scss",
 })
 export class TaskDetailComponent {
   readonly dialogRef = inject(MatDialogRef<TaskDetailComponent>);
   readonly data = inject<Task | undefined>(MAT_DIALOG_DATA);
   readonly task = model<Task | undefined>(this.data);
 
-  readonly name = model<String>(this.data?.name || '');
+  readonly name = model<string>(this.data?.name || "");
   readonly completed = model<boolean>(this.data?.completed || false);
   readonly options = inject(FormBuilder);
 
@@ -72,7 +72,7 @@ export class TaskDetailComponent {
     // Don't save if the name is empty.
     if (
       this.taskFormControl.value === undefined ||
-      this.taskFormControl.value === ''
+      this.taskFormControl.value === ""
     ) {
       return;
     }

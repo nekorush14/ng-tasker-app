@@ -1,16 +1,16 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, OnInit, signal } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-error',
+  selector: "app-error",
   imports: [MatButtonModule, RouterModule, RouterModule],
-  templateUrl: './error.component.html',
-  styleUrl: './error.component.scss',
+  templateUrl: "./error.component.html",
+  styleUrl: "./error.component.scss",
 })
 export class ErrorComponent implements OnInit {
   readonly statusCode = signal<number>(404);
-  readonly message = signal<string>('Page not found');
+  readonly message = signal<string>("Page not found");
 
   constructor(private route: ActivatedRoute) {}
 
@@ -23,9 +23,9 @@ export class ErrorComponent implements OnInit {
     } else {
       // Otherwise, use the data from the route
       const data = this.route.snapshot.data;
-      console.log('[DEBUG] route data:', data);
-      if (data['statusCode']) this.statusCode.set(data['statusCode']);
-      if (data['message']) this.message.set(data['message']);
+      console.log("[DEBUG] route data:", data);
+      if (data["statusCode"]) this.statusCode.set(data["statusCode"]);
+      if (data["message"]) this.message.set(data["message"]);
     }
   }
 }

@@ -1,21 +1,21 @@
-import { Component, inject, signal } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterModule } from '@angular/router';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { Task } from './shared/task';
-import { MatButtonModule } from '@angular/material/button';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { Component, inject, signal, OnInit } from "@angular/core";
+import { MatTableDataSource, MatTableModule } from "@angular/material/table";
+import { MatIconModule } from "@angular/material/icon";
+import { Router, RouterModule } from "@angular/router";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { toObservable } from "@angular/core/rxjs-interop";
+import { Task } from "./shared/task";
+import { MatButtonModule } from "@angular/material/button";
+import { TaskDetailComponent } from "./task-detail/task-detail.component";
 import {
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatDialog,
-} from '@angular/material/dialog';
-import { TaskService } from './shared/task.service';
-import { handleError } from '../utils/error-handler';
+} from "@angular/material/dialog";
+import { TaskService } from "./shared/task.service";
+import { handleError } from "../utils/error-handler";
 
 @Component({
-  selector: 'app-tasks',
+  selector: "app-tasks",
   imports: [
     MatTableModule,
     RouterModule,
@@ -26,21 +26,21 @@ import { handleError } from '../utils/error-handler';
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
-      useValue: { autoFocus: 'dialog', restoreFocus: true },
+      useValue: { autoFocus: "dialog", restoreFocus: true },
     },
   ],
-  templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.scss',
+  templateUrl: "./tasks.component.html",
+  styleUrl: "./tasks.component.scss",
 })
-export class TasksComponent {
+export class TasksComponent implements OnInit {
   readonly tasks = signal<Task[]>([]);
-  readonly displayedColumns = ['id', 'name', 'completed'];
+  readonly displayedColumns = ["id", "name", "completed"];
   readonly dialog = inject(MatDialog);
   dataSource: MatTableDataSource<Task> | undefined;
 
   constructor(
     private taskService: TaskService,
-    private router: Router,
+    private router: Router
   ) {
     toObservable(this.tasks).subscribe((tasks) => {
       this.dataSource = new MatTableDataSource(tasks);
@@ -64,7 +64,7 @@ export class TasksComponent {
 
     // Update the task in the list if the dialog result has task data.
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('Dialog result:', result);
+      console.log("Dialog result:", result);
       if (result !== undefined) {
         if (result.delete) {
           // Call the task service to delete a task and if it has error then redirect to error page.
@@ -109,7 +109,7 @@ export class TasksComponent {
 
     // Add a new task to the list if the dialog result has task data.
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('Dialog result:', result);
+      console.log("Dialog result:", result);
       if (result !== undefined) {
         // Call the task service to add a new task and if it has error then redirect to error page.
         this.taskService.addTask(result).subscribe({

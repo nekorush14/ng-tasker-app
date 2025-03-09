@@ -1,11 +1,11 @@
-import { HttpStatusCode } from '@angular/common/http';
-import { http, HttpResponse } from 'msw';
-import { environment } from '../../environments/environment';
+import { HttpStatusCode } from "@angular/common/http";
+import { http, HttpResponse } from "msw";
+import { environment } from "../../environments/environment";
 
 const tasks = [
-  { id: 1, name: 'Task 1', completed: false },
-  { id: 2, name: 'Task 2', completed: true },
-  { id: 3, name: 'Task 3', completed: false },
+  { id: 1, name: "Task 1", completed: false },
+  { id: 2, name: "Task 2", completed: true },
+  { id: 3, name: "Task 3", completed: false },
 ];
 
 const taskUri = `${environment.apiBaseUrl}${environment.apiPaths.tasks}`;
@@ -28,7 +28,7 @@ export const handlers = [
     const task = tasks.find((task) => task.id === Number(id));
 
     if (!task) {
-      return HttpResponse.json({ message: 'Task not found' }, { status: 404 });
+      return HttpResponse.json({ message: "Task not found" }, { status: 404 });
     }
     return HttpResponse.json(task, { status: HttpStatusCode.Ok });
   }),
@@ -45,7 +45,7 @@ export const handlers = [
     newTask.id = maxId + 1;
 
     tasks.push(newTask);
-    return HttpResponse.json({ message: '', status: HttpStatusCode.Ok });
+    return HttpResponse.json({ message: "", status: HttpStatusCode.Ok });
   }),
 
   http.put(`${taskUri}/:id`, async ({ request, params }) => {
@@ -59,11 +59,11 @@ export const handlers = [
     console.log(`[MSW] Request:`, JSON.stringify(requestBody));
 
     // id format check
-    const taskId = Number(params['id']);
+    const taskId = Number(params["id"]);
     if (isNaN(taskId)) {
       return new HttpResponse(null, {
         status: 400,
-        statusText: 'Bad Request: Invalid ID',
+        statusText: "Bad Request: Invalid ID",
       });
     }
 
@@ -75,8 +75,8 @@ export const handlers = [
         JSON.stringify({ message: `Task with ID ${taskId} not found` }),
         {
           status: 404,
-          headers: { 'Content-Type': 'application/json' },
-        },
+          headers: { "Content-Type": "application/json" },
+        }
       );
     }
 
@@ -88,11 +88,11 @@ export const handlers = [
 
   http.delete(`${taskUri}/:id`, ({ params }) => {
     // id format check
-    const taskId = Number(params['id']);
+    const taskId = Number(params["id"]);
     if (isNaN(taskId)) {
       return new HttpResponse(null, {
         status: 400,
-        statusText: 'Bad Request: Invalid ID',
+        statusText: "Bad Request: Invalid ID",
       });
     }
 
@@ -104,8 +104,8 @@ export const handlers = [
         JSON.stringify({ message: `Task with ID ${taskId} not found` }),
         {
           status: 404,
-          headers: { 'Content-Type': 'application/json' },
-        },
+          headers: { "Content-Type": "application/json" },
+        }
       );
     }
 

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Task } from './task';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Injectable } from "@angular/core";
+import { Task } from "./task";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 /**
  * Task service interface.
@@ -51,7 +52,7 @@ export interface ITaskService {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class TaskService implements ITaskService {
   private client: HttpClient;

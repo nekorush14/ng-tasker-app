@@ -1,21 +1,21 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
+import { provideRouter } from "@angular/router";
 
-import { routes } from './app.routes';
+import { routes } from "./app.routes";
 // import {
 //   provideClientHydration,
 //   withEventReplay,
 // } from '@angular/platform-browser';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
   withInterceptors,
   withInterceptorsFromDi,
-} from '@angular/common/http';
-import { LoggingInterceptor } from './core/logging.interceptor';
-import { apiInterceptor } from './core/api.interceptor';
+} from "@angular/common/http";
+import { LoggingInterceptor } from "./core/logging.interceptor";
+import { apiInterceptor } from "./core/api.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptorsFromDi(),
       withFetch(),
-      withInterceptors([apiInterceptor]),
+      withInterceptors([apiInterceptor])
     ),
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ],

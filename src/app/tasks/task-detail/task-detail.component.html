@@ -16,7 +16,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Cancel</button>
-  @if (task()?.id != undefined) {
+  @if (task()?.id !== undefined) {
     <button mat-button (click)="onDeleteClick()">Delete</button>
   }
   <button mat-button (click)="onSaveClick()">Save</button>
