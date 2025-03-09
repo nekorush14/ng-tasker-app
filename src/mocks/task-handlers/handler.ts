@@ -8,15 +8,15 @@ const tasks = [
   { id: 3, name: "Task 3", completed: false },
 ];
 
-const taskUri = `${environment.apiBaseUrl}${environment.apiPaths.tasks}`;
+const taskUri = `${environment.apiBaseUrl}${environment.apiPaths.task}`;
 /**
  * Mock API handlers for task management.
  *
  * @default
- * - GET /api/tasks: Returns a list of tasks.
- * - POST /api/tasks: Creates a new task.
- * - PUT /api/tasks/:id: Updates an existing task.
- * - DELETE /api/tasks/:id: Deletes a task.
+ * - GET /api/task: Returns a list of tasks.
+ * - POST /api/task: Creates a new task.
+ * - PUT /api/task/:id: Updates an existing task.
+ * - DELETE /api/task/:id: Deletes a task.
  */
 export const handlers = [
   http.get(`${taskUri}`, () => {

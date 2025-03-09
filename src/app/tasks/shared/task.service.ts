@@ -56,7 +56,7 @@ export interface ITaskService {
 })
 export class TaskService implements ITaskService {
   private client: HttpClient;
-  private apiPath = environment.apiPaths.tasks;
+  private apiPath = environment.apiPaths.task;
 
   constructor(private http: HttpClient) {
     this.client = http;
